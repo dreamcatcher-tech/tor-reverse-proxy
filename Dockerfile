@@ -1,25 +1,22 @@
 FROM debian:buster-slim
 LABEL tor latest
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
     ntpdate \
     apache2 \
     sudo \
-    tor
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    node-ws \
-    nano \
-    lsof
-RUN apt-get clean
-# RUN rm -rf /var/lib/apt/lists/*
+    tor && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN useradd --system --uid 666 -M --shell /usr/sbin/nologin tor
 RUN echo "tor     ALL=NOPASSWD:/etc/init.d/apache2" >> /etc/sudoers
 
-COPY tor-forward.conf /etc/apache2/sites-available/
+RUN touch /etc/apache2/sites-available/tor-forward.conf
+RUN chown tor /etc/apache2/sites-available/tor-forward.conf
 RUN a2ensite tor-forward.conf
 RUN a2enmod proxy proxy_http proxy_wstunnel ssl 
 

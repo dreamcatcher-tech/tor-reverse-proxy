@@ -1,0 +1,6 @@
+PRIVATE_KEY=PT0gZWQyNTUxOXYxLXNlY3JldDogdHlwZTAgPT0AAAAgOrJJp9RoOPXWslIp+neCns4bV3O/SoNLK9ahSTn/ZjoKHsqueCcO2x1BexAOJ3XSFyy2lQd6dErCau2++cTF
+STATIC_URL=https://www.neutronjs.com/
+WEBSOCKET_URL=wss://echo.websocket.org/
+
+# For reference, hostname will be:
+# e27i5od2yq5dmhuvti3eaogjy7afrpwzfxszjqlycekwf6ylrphizbyd.onion
